@@ -20,24 +20,78 @@
         }
         
 
-        const playerSelection = "Rock";
-        console.log(playerSelection)
-        const computerSelection = getComputerChoice();
-        console.log(computerSelection)
+       
+
+        var playerSelection = "";
+        var computerSelection = "";
+
+        var playerPoints = 0;
+        var computerPoints = 0;
 
         function playRound(playerSelection, computerSelection) {
 
+            playerSelection = prompt();
+            computerSelection = getComputerChoice();
+            
+
             if (playerSelection == computerSelection){
                 return "Pari"
+                return playerPoints
+                return computerPoints
             }
 
             if (playerSelection == "Rock" && computerSelection == "Paper") {
+                computerPoints = computerPoints+1
                 return "You Lose! Paper beats Rock"
+                return computerPoints
+            } else if (playerSelection == "Paper" && computerSelection == "Rock") {
+                playerPoints = playerPoints+1;
+                return "You Win! Paper beats Rock"
+                return playerPoints
+            }
+
+            if (playerSelection == "Scissors" && computerSelection == "Rock") {
+                computerPoints = computerPoints+1
+                return "You Lose! Rock beats Scissors"
+                return computerPoints
+            } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
+                playerPoints = playerPoints+1;
+                return "You Win! Rock beats Scissors"
+                return playerPoints
+            }
+
+            if (playerSelection == "Scissors" && computerSelection == "Paper") {
+                playerPoints = playerPoints+1;
+                return "You Win! Scissors beats Paper"
+                return playerPoints
+            } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
+                computerPoints = computerPoints+1
+                return "You Lose! Scissors beats Paper"
+                return computerPoints
             }
         }
  
         
-        console.log(playRound(playerSelection, computerSelection));
+
+        function game(){
+            console.log(playRound(playerSelection, computerSelection, computerPoints, playerPoints));
+            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
+            console.log(playRound(playerSelection, computerSelection));
+            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
+
+            if(computerPoints > playerPoints){
+                return "YOU LOSE"
+            } else {
+                return "YOU WIN"
+            }
+        }
+    console.log(game())
 
     </script>
 </body>
