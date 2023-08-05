@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <div class="header">
+        <h1>Rock Paper Scissors</h1>
+        <h3>Time to beat the AI</h3>
+    </div>
+    
+
+    <div class="main_container">
+        <button type="button" class="rock">Rock</button>
+        <button type="button" class="paper">Paper</button>
+        <button type="button" class="scissors">Scissors</button>
+    </div>
+
+    <div class="points">
+        <p>POINTS:</p>
+        <p>You win, you lose.</p>
+    </div>
+<!--
     <script>
         function getComputerChoice() {
             let value = Math.floor(Math.random() * 3) + 1
@@ -18,9 +36,6 @@
                 return "Scissors"
             }
         }
-        
-
-       
 
         var playerSelection = "";
         var computerSelection = "";
@@ -94,5 +109,6 @@
     console.log(game())
 
     </script>
+-->
 </body>
 </html>
