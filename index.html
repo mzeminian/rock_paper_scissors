@@ -7,6 +7,13 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
+    <div class="blockGame" id="blockGame">
+        <div class="stopContainer">        
+            <p id="stopText"></p>
+            <button onClick="refreshPage()">Play Again</button>
+        </div>
+    </div>
+
     <div class="header">
         <h1>Rock Paper Scissors</h1>
         <h3>Time to beat the AI</h3>
@@ -20,9 +27,9 @@
     </div>
 
     <div class="points">
-        <p>PLAYER POINTS: <span id="ppoints"></span></p>
-        <p>COMPUTER POINTS: <span id="cpoints"></span></p>
-        <p id="result">You win, you lose.</p>
+        <p>PLAYER POINTS: <span id="ppoints">0</span></p>
+        <p>COMPUTER POINTS: <span id="cpoints">0</span></p>
+        <p id="result">----------</p>
     </div>
 
     <script>
@@ -40,7 +47,9 @@
         var computerSelection = "";
         var playerSelection = "";
 
+        const stopDiv = document.getElementById("blockGame")
         const result = document.getElementById("result");
+        const stopText = document.getElementById("stopText");
         const ppoints = document.getElementById("ppoints");
         const cpoints = document.getElementById("cpoints");
 
@@ -55,18 +64,21 @@
             playRound(playerSelection, computerSelection);
             ppoints.innerHTML = playerPoints;
             cpoints.innerHTML = computerPoints;
-            if(playerPoints == 5){
-                result.innerHTML = "YOU WIN";
-                buttons.disabled = true;
-            } else if (computerPoints == 5){
-                result.innerHTML = "YOU LOSE";
-                buttons.disabled = true;
-            }
+            checkPoint();
             });
         });
 
-        
-        
+        function checkPoint(){
+            if(playerPoints == 5){
+                stopText.innerHTML = "YOU WIN";
+                stopDiv.classList.add("blockGame")
+                stopDiv.style.visibility = "visible";
+            } else if (computerPoints == 5){
+                stopText.innerHTML = "YOU LOSE";
+                stopDiv.classList.add("blockGame")
+                stopDiv.style.visibility = "visible";
+            }
+        }
 
         function playRound(playerSelection, computerSelection) {
             
@@ -110,30 +122,11 @@
                 result.innerHTML = "You Lose! Scissors beats Paper"
                 return computerPoints
             }
-
-            
         }
- 
         
-
-        function game(){
-            console.log(playRound(playerSelection, computerSelection, computerPoints, playerPoints));
-            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
-            console.log(playRound(playerSelection, computerSelection));
-            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
-            console.log(playRound(playerSelection, computerSelection));
-            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
-            console.log(playRound(playerSelection, computerSelection));
-            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
-            console.log(playRound(playerSelection, computerSelection));
-            console.log("Computer points: " + computerPoints + " || Player points: " + playerPoints)
-
-            if(computerPoints > playerPoints){
-                return "YOU LOSE"
-            } else {
-                return "YOU WIN"
-            }
-        }
+        function refreshPage(){
+            window.location.reload();
+        }   
 
     </script>
 </body>
