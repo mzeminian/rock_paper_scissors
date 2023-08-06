@@ -14,20 +14,20 @@
     
 
     <div class="main_container">
-        <button type="button" class="rock">Rock</button>
-        <button type="button" class="paper">Paper</button>
-        <button type="button" class="scissors">Scissors</button>
+        <button type="button" class="btn" id="Rock">Rock</button>
+        <button type="button" class="btn" id="Paper">Paper</button>
+        <button type="button" class="btn" id="Scissors">Scissors</button>
     </div>
 
     <div class="points">
-        <p>POINTS:</p>
-        <p>You win, you lose.</p>
+        <p>PLAYER POINTS: <span id="ppoints"></span></p>
+        <p>COMPUTER POINTS: <span id="cpoints"></span></p>
+        <p id="result">You win, you lose.</p>
     </div>
-<!--
+
     <script>
         function getComputerChoice() {
             let value = Math.floor(Math.random() * 3) + 1
-
             if(value == 1){
                 return "Rock"
             } else if (value == 2) {
@@ -37,53 +37,81 @@
             }
         }
 
-        var playerSelection = "";
         var computerSelection = "";
+        var playerSelection = "";
+
+        const result = document.getElementById("result");
+        const ppoints = document.getElementById("ppoints");
+        const cpoints = document.getElementById("cpoints");
 
         var playerPoints = 0;
         var computerPoints = 0;
 
-        function playRound(playerSelection, computerSelection) {
+        var buttons = document.querySelectorAll('.btn');
 
-            playerSelection = prompt();
-            computerSelection = getComputerChoice();
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+            playerSelection = button.id;
+            playRound(playerSelection, computerSelection);
+            ppoints.innerHTML = playerPoints;
+            cpoints.innerHTML = computerPoints;
+            if(playerPoints == 5){
+                result.innerHTML = "YOU WIN";
+                buttons.disabled = true;
+            } else if (computerPoints == 5){
+                result.innerHTML = "YOU LOSE";
+                buttons.disabled = true;
+            }
+            });
+        });
+
+        
+        
+
+        function playRound(playerSelection, computerSelection) {
             
+            playerSelection = playerSelection;
+            computerSelection = getComputerChoice();     
+
+            console.log(playerSelection, computerSelection)
 
             if (playerSelection == computerSelection){
-                return "Pari"
+                result.innerHTML = "Pari";
                 return playerPoints
                 return computerPoints
             }
 
             if (playerSelection == "Rock" && computerSelection == "Paper") {
                 computerPoints = computerPoints+1
-                return "You Lose! Paper beats Rock"
+                result.innerHTML = "You Lose! Paper beats Rock"
                 return computerPoints
             } else if (playerSelection == "Paper" && computerSelection == "Rock") {
                 playerPoints = playerPoints+1;
-                return "You Win! Paper beats Rock"
+                result.innerHTML = "You Win! Paper beats Rock"
                 return playerPoints
             }
 
             if (playerSelection == "Scissors" && computerSelection == "Rock") {
                 computerPoints = computerPoints+1
-                return "You Lose! Rock beats Scissors"
+                result.innerHTML = "You Lose! Rock beats Scissors"
                 return computerPoints
             } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
                 playerPoints = playerPoints+1;
-                return "You Win! Rock beats Scissors"
+                result.innerHTML = "You Win! Rock beats Scissors"
                 return playerPoints
             }
 
             if (playerSelection == "Scissors" && computerSelection == "Paper") {
                 playerPoints = playerPoints+1;
-                return "You Win! Scissors beats Paper"
+                result.innerHTML = "You Win! Scissors beats Paper"
                 return playerPoints
             } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
                 computerPoints = computerPoints+1
-                return "You Lose! Scissors beats Paper"
+                result.innerHTML = "You Lose! Scissors beats Paper"
                 return computerPoints
             }
+
+            
         }
  
         
@@ -106,9 +134,7 @@
                 return "YOU WIN"
             }
         }
-    console.log(game())
 
     </script>
--->
 </body>
 </html>
